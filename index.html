@@ -1,10 +1,196 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>گزارش پاور بی‌آی</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>گزارش عمومی پاور بی‌آی</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --accent-soft:#e0e7ff;
+      --radius:18px;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b0f17;
+        --card:#0f1624;
+        --text:#e5e7eb;
+        --muted:#9ca3af;
+        --accent:#60a5fa;
+        --accent-soft:#1e293b;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Vazirmatn, Segoe UI, Tahoma, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, var(--accent-soft), transparent) ,
+                  radial-gradient(1000px 600px at 120% 10%, var(--accent-soft), transparent),
+                  var(--bg);
+      color:var(--text);
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--card) 70%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+    }
+    .wrap{
+      max-width:1100px; margin:0 auto; padding:18px 20px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px;
+    }
+    .badge{
+      font-size:12px; color:var(--accent); background: color-mix(in oklab, var(--accent) 15%, transparent);
+      padding:4px 10px; border-radius:999px; border:1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+    }
+    main{padding:26px 20px 30px;}
+    .container{
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:1fr; gap:22px;
+    }
+    .card{
+      background:var(--card); border:1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+      border-radius:var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      overflow:hidden;
+    }
+    .card-head{padding:18px 18px 0}
+    h1{
+      margin:0 0 6px; font-size:clamp(18px, 2.6vw, 24px);
+    }
+    .sub{margin:0 0 14px; color:var(--muted); font-size:14px}
+    .frame-wrap{
+      position:relative; width:100%;
+      /* نسبت تصویر 16:9 */
+      aspect-ratio: 16/9;
+      background: repeating-conic-gradient(from 0deg, color-mix(in oklab, var(--muted) 8%, transparent) 0 25deg, transparent 25deg 50deg);
+    }
+    /* fallback برای مرورگرهای بدون aspect-ratio */
+    @supports not (aspect-ratio: 16/9){
+      .frame-wrap{height:0; padding-top:56.25%;}
+      .frame-wrap > *{position:absolute; inset:0}
+    }
+    iframe{
+      width:100%; height:100%; border:0; display:block;
+    }
+    .loading{
+      position:absolute; inset:0; display:grid; place-items:center;
+      color:var(--muted); font-size:14px;
+      animation: fade .4s ease both;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background:var(--accent); margin-inline:3px; display:inline-block;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    .dot:nth-child(2){animation-delay:.15s}
+    .dot:nth-child(3){animation-delay:.3s}
+    @keyframes bounce{
+      0%,80%,100%{transform:translateY(0); opacity:.6}
+      40%{transform:translateY(-7px); opacity:1}
+    }
+    @keyframes fade{from{opacity:0} to{opacity:1}}
+    .footer{
+      text-align:center; color:var(--muted); font-size:12px; padding:10px 6px;
+    }
+    .actions{
+      display:flex; gap:10px; flex-wrap:wrap; padding:0 18px 16px;
+    }
+    .btn{
+      appearance:none; border:1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+      background: color-mix(in oklab, var(--accent) 14%, var(--card));
+      color:var(--accent); padding:10px 14px; border-radius:12px; cursor:pointer;
+      font-weight:600;
+    }
+    .btn:active{transform:translateY(1px)}
+  </style>
 </head>
-<body style="margin:0; padding:0; text-align:center;">
-<iframe title="moein" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiMzc5ZDMwNDgtYjdiOS00ZDFhLWIyZDEtYWRlNTM3NjkxMDVlIiwidCI6IjE2ZDhlODM1LTBjNzAtNGRlYS1hNjZhLWM1YmI4ZDkyOWFmMSIsImMiOjJ9" frameborder="0" allowFullScreen="true"></iframe>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 17c4-1 7-4 9-8 2 3 5 5 9 6-2 3-5 6-9 6s-7-2-9-4Z" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="19" cy="5" r="2" fill="currentColor"/>
+        </svg>
+        <span>داشبورد عمومی</span>
+        <span class="badge">Power BI</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="card">
+        <div class="card-head">
+          <h1>نمایش تعاملی گزارش</h1>
+          <p class="sub">این صفحه فقط یک پوسته‌ی سبک برای میزبانی iframe پاور بی‌آی شماست.</p>
+        </div>
+
+        <div class="frame-wrap" id="frameWrap">
+          <div class="loading" id="loader" aria-live="polite">
+            <span>در حال بارگذاری</span>
+            <span style="display:inline-flex; margin-inline-start:6px;">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </span>
+          </div>
+
+          <!-- ⬇️ لینک پاور بی‌آی خودتان را همین‌جا قرار دهید -->
+          <iframe
+            id="report"
+            title="moein"
+            src="https://app.powerbi.com/view?r=eyJrIjoiMzc5ZDMwNDgtYjdiOS00ZDFhLWIyZDEtYWRlNTM3NjkxMDVlIiwidCI6IjE2ZDhlODM1LTBjNzAtNGRlYS1hNjZhLWM1YmI4ZDkyOWFmMSIsImMiOjJ9"
+            allowfullscreen="true"
+            referrerpolicy="no-referrer-when-downgrade"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="btnFull">نمایش تمام‌صفحه</button>
+          <button class="btn" id="btnReload">بارگذاری مجدد</button>
+        </div>
+      </section>
+
+      <p class="footer">
+        اگر گزارش لود نشد، بررسی کنید که لینک <code>Publish to web</code> هنوز فعال باشد و فایروال/وی‌پی‌ان مانع اتصال نباشد.
+      </p>
+    </div>
+  </main>
+
+  <noscript>
+    برای دیدن گزارش، جاوااسکریپت را فعال کنید.
+  </noscript>
+
+  <script>
+    // حذف لودر پس از لود شدن iframe
+    const iframe = document.getElementById('report');
+    const loader = document.getElementById('loader');
+    iframe.addEventListener('load', () => {
+      loader?.remove();
+    });
+
+    // تمام‌صفحه
+    document.getElementById('btnFull')?.addEventListener('click', () => {
+      const el = document.getElementById('report');
+      if (!el) return;
+      if (el.requestFullscreen) el.requestFullscreen();
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    });
+
+    // رفرش iframe
+    document.getElementById('btnReload')?.addEventListener('click', () => {
+      iframe.src = iframe.src;
+    });
+  </script>
 </body>
 </html>
