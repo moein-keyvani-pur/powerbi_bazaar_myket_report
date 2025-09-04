@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>گزارش عمومی پاور بی‌آی</title>
+  <title>Public Power BI Report</title>
   <meta name="color-scheme" content="light dark" />
   <style>
     :root{
@@ -29,7 +29,7 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Vazirmatn, Segoe UI, Tahoma, Arial, sans-serif;
+      font-family: Segoe UI, Tahoma, Arial, sans-serif;
       background: radial-gradient(1200px 600px at 20% -10%, var(--accent-soft), transparent) ,
                   radial-gradient(1000px 600px at 120% 10%, var(--accent-soft), transparent),
                   var(--bg);
@@ -69,11 +69,10 @@
     .sub{margin:0 0 14px; color:var(--muted); font-size:14px}
     .frame-wrap{
       position:relative; width:100%;
-      /* نسبت تصویر 16:9 */
+      /* 16:9 aspect ratio */
       aspect-ratio: 16/9;
       background: repeating-conic-gradient(from 0deg, color-mix(in oklab, var(--muted) 8%, transparent) 0 25deg, transparent 25deg 50deg);
     }
-    /* fallback برای مرورگرهای بدون aspect-ratio */
     @supports not (aspect-ratio: 16/9){
       .frame-wrap{height:0; padding-top:56.25%;}
       .frame-wrap > *{position:absolute; inset:0}
@@ -121,7 +120,7 @@
           <path d="M3 17c4-1 7-4 9-8 2 3 5 5 9 6-2 3-5 6-9 6s-7-2-9-4Z" stroke="currentColor" stroke-width="1.5" />
           <circle cx="19" cy="5" r="2" fill="currentColor"/>
         </svg>
-        <span>داشبورد عمومی</span>
+        <span>Public Dashboard</span>
         <span class="badge">Power BI</span>
       </div>
     </div>
@@ -131,22 +130,22 @@
     <div class="container">
       <section class="card">
         <div class="card-head">
-          <h1>نمایش تعاملی گزارش</h1>
-          <p class="sub">این صفحه فقط یک پوسته‌ی سبک برای میزبانی iframe پاور بی‌آی شماست.</p>
+          <h1>Interactive Report View</h1>
+          <p class="sub">This page is a lightweight shell for hosting your Power BI iframe.</p>
         </div>
 
         <div class="frame-wrap" id="frameWrap">
           <div class="loading" id="loader" aria-live="polite">
-            <span>در حال بارگذاری</span>
+            <span>Loading</span>
             <span style="display:inline-flex; margin-inline-start:6px;">
               <span class="dot"></span><span class="dot"></span><span class="dot"></span>
             </span>
           </div>
 
-          <!-- ⬇️ لینک پاور بی‌آی خودتان را همین‌جا قرار دهید -->
+          <!-- ⬇️ Place your Power BI publish-to-web link here -->
           <iframe
             id="report"
-            title="moein"
+            title="Power BI Report"
             src="https://app.powerbi.com/view?r=eyJrIjoiMzc5ZDMwNDgtYjdiOS00ZDFhLWIyZDEtYWRlNTM3NjkxMDVlIiwidCI6IjE2ZDhlODM1LTBjNzAtNGRlYS1hNjZhLWM1YmI4ZDkyOWFmMSIsImMiOjJ9"
             allowfullscreen="true"
             referrerpolicy="no-referrer-when-downgrade"
@@ -155,30 +154,30 @@
         </div>
 
         <div class="actions">
-          <button class="btn" id="btnFull">نمایش تمام‌صفحه</button>
-          <button class="btn" id="btnReload">بارگذاری مجدد</button>
+          <button class="btn" id="btnFull">Fullscreen</button>
+          <button class="btn" id="btnReload">Reload</button>
         </div>
       </section>
 
       <p class="footer">
-        اگر گزارش لود نشد، بررسی کنید که لینک <code>Publish to web</code> هنوز فعال باشد و فایروال/وی‌پی‌ان مانع اتصال نباشد.
+        If the report doesn't load, check that the <code>Publish to Web</code> link is still active and ensure firewall/VPN is not blocking the connection.
       </p>
     </div>
   </main>
 
   <noscript>
-    برای دیدن گزارش، جاوااسکریپت را فعال کنید.
+    Enable JavaScript to view the report.
   </noscript>
 
   <script>
-    // حذف لودر پس از لود شدن iframe
+    // Remove loader after iframe loads
     const iframe = document.getElementById('report');
     const loader = document.getElementById('loader');
     iframe.addEventListener('load', () => {
       loader?.remove();
     });
 
-    // تمام‌صفحه
+    // Fullscreen toggle
     document.getElementById('btnFull')?.addEventListener('click', () => {
       const el = document.getElementById('report');
       if (!el) return;
@@ -187,7 +186,7 @@
       else if (el.msRequestFullscreen) el.msRequestFullscreen();
     });
 
-    // رفرش iframe
+    // Reload iframe
     document.getElementById('btnReload')?.addEventListener('click', () => {
       iframe.src = iframe.src;
     });
